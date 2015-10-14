@@ -27,10 +27,7 @@ tab. Make sure that it is checked. See http://docs.qgis.org/1.8/en/docs/user_man
 ## Dependencies
 
 - QGIS 2.4, 2.6, 2.8
-- ```python 
-gpxpy, mutagen, and simplekml
-```
-Python packages are all distributed with MilkMachine to avoid user installation.
+- Python```python gpxpy, mutagen, simplekml``` packages are all distributed with MilkMachine to avoid user installation.
 - Python SciPy may need to be installed manually. See http://www.scipy.org/install.html for platform specific instructions. 
 
 ## Issues
