@@ -9,29 +9,30 @@
 
 
 [general]
-name=Milk Machine
-qgisMinimumVersion=2.0
-description=Process, edit, and scyncronize GPS and audio tracks with KML output
-version=0.1
-author=polakvanbekkum
-email=marketst@gmail.com
+name=MilkMachine
+qgisMinimumVersion=2.4
+description=QGIS Python Plugin for creating KML from GPS data
+about=QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. The code and components developed to support the 250 Miles Crossing Philadelphia project http://www.250miles.net/. Milk Machine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment, spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.
+version=1.0
+author=Ed Farrell, Sean McGinnis & polakvanbekkum
+email=edward.farrell27@gmail.com
 
 # end of mandatory metadata
 
 # Optional items:
 
 # Uncomment the following line and add your changelog entries:
-# changelog=
+changelog=1.0 - First testing release (experimental).
 
 # tags are comma separated with spaces allowed
-tags=
+tags=Python, kml, gps, tracking, audio, gps filtering, Google Earth
 
-homepage=
-tracker=
-repository=
+homepage=https://github.com/EdFarrell/MilkMachine
+tracker=https://github.com/EdFarrell/MilkMachine/issues
+repository=https://github.com/EdFarrell/MilkMachine.git
 icon=icon.png
 # experimental flag
-experimental=False
+experimental=True
 
 # deprecated flag (applies to the whole plugin, not just a single version
 deprecated=False

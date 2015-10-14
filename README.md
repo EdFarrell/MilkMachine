@@ -23,14 +23,14 @@ tab. Make sure that it is checked. See http://docs.qgis.org/1.8/en/docs/user_man
 ### Import a .csv file
 All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "altitude"
 - **date**: Date of the location. Can be in these formats; MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD
-- **time**: Time of the location. Must be HH:MM:SS, or HH:MM:SS mmmmmm. mmmmmm is microseconds. See the Python datetime library for full spec (https://docs.python.org/2/library/datetime.html)
+- **time**: Time of the location. Must be HH:MM:SS, or HH:MM:SS.mmmmmm. mmmmmm is microseconds. See the Python datetime library for full spec (https://docs.python.org/2/library/datetime.html)
 - **x**: Longitude. numeric, geographic coordinates (WGS84)
 - **y**: Latitude. numeric, geographic coordinates (WGS84)
 - **altitude**: Elevation in reference to sea level (could also be to "sea floor"). numeric, meters preferred.
 
 1. Click the "Import GPS" button (see image above) and browse to a raw gps file in .csv format
 2. Once the file is loaded, choose a date format and click the "Draw Track" button.
-3. The file will draw a point layer and a line layer on the QGIS map canvas. An ESRI shapefile (.shp) will be created in the source directory for your .csv file. This shapefile will be edited to produce the .kml file
+3. The file will draw a point layer on the QGIS map canvas. An ESRI shapefile (.shp) will be created in the source directory for your .csv file. This shapefile will be edited to produce the .kml file
 
 
 ### Create a KML Placemarks

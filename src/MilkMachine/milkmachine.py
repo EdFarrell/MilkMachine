@@ -1813,6 +1813,7 @@ class MilkMachine:
                             else:
                                 self.selectList.append([f.id(), geom.asPoint()])
                         except:
+                            break
                             QMessageBox.warning( self.iface.mainWindow(),"Follow Behind Error", "Models have not been added. Please add models ('Placemarks' tab), and try again." )
 
                         # get the time vector in order to calculate duration of the flyto
@@ -2317,7 +2318,7 @@ class MilkMachine:
                             i += 1
 
                         if i < 10:
-                            QMessageBox.warning( self.iface.mainWindow(),"Friendly Import Warning", "This track is pretty short, which if fine. However, some of the track smoothing and tour automation won't work great because it is geared for longer tracks. Give it a try anyway and let us know if you encounter an error or serious problem at https://github.com/SeanKMcGinnis/250MilesCrossingPhila/issues" )
+                            QMessageBox.warning( self.iface.mainWindow(),"Friendly Import Warning", "This track is pretty short, which if fine. However, some of the track smoothing and tour automation won't work great because it is geared for longer tracks. Give it a try anyway and let us know if you encounter an error or serious problem at https://github.com/EdFarrell/MilkMachine/issues" )
 
                     if len(userfields) == 5:
                         self.logger.info('headers %s' % userfields)
@@ -2358,6 +2359,7 @@ class MilkMachine:
                                 pointdate = f.attributes()[self.fields['date']]  #2014/06/06
                                 pointtime = f.attributes()[self.fields['time']]
                                 # format for microseconds
+
                                 sec_pieces = pointtime.split(':')[2].split('.')
                                 if len(sec_pieces) == 1:
                                     microsec = 0
@@ -2384,7 +2386,7 @@ class MilkMachine:
                         except:
                             self.logger.error('Error writing time to datetime column, user presented with messagebox')
                             self.logger.exception(traceback.format_exc())
-                            QMessageBox.critical( self.iface.mainWindow(),"Date & Time Import Error", "An error occured while converting the 'date' and 'time' fields into a Python datetime object. Please make sure that your date format is YYYY/MM/DD, and the time format is HH:MM:SS. If your seconds are fractional, then please express this as SS.xxxxxx")
+                            QMessageBox.critical( self.iface.mainWindow(),"Date & Time Import Error", "An error occured while converting the 'date' and 'time' fields into a Python datetime object. Please make sure that your specified the correct date format, and the time format is HH:MM:SS. If your seconds are fractional, then please express this as SS.xxxxxx")
 
 
                         QgsMapLayerRegistry.instance().addMapLayer(shaper)
