@@ -5,7 +5,7 @@ http://www.250miles.net/. Milk Machine will accept raw gps data in .csv format a
 spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is 
 produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.
 
-![alt text](https://github.com/EdFarrell/MilkMachine/tree/master/dist/docs/mm_image1.png "image 1")
+![MM Image](https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/mm_image1.PNG "image 1")
 
 ## Using MilkMachine
 
@@ -15,10 +15,10 @@ produced that will store the coded attribute information. No cow's milk (or milk
 tab. Make sure that it is checked. See http://docs.qgis.org/1.8/en/docs/user_manual/plugins/plugins.html for full documentation.
 - MilkMachine is currently an "experimental" plugin, so make sure that options is checked in the plugin manager (in Settings...).
 
-### Install Directories (don't worry about this is you install from the Repository)
-Windows: C:\Users\<username>\.qgis2\python\plugins
-Mac: ~\.qgis2\python\plugins
-Ubuntu Linux: \user\.qgis2\python\plugins
+#### Install Directories (don't worry about this is you install from the Repository)
+- Windows: C:\Users\<username>\.qgis2\python\plugins
+- Mac: ~\.qgis2\python\plugins
+- Ubuntu Linux: \user\.qgis2\python\plugins
 
 ### Create a KML Placemarks
 
@@ -27,9 +27,9 @@ Ubuntu Linux: \user\.qgis2\python\plugins
 ## Dependencies
 
 - QGIS 2.4, 2.6, 2.8
-- '''python 
+- ```python 
 gpxpy, mutagen, and simplekml
-'''
+```
 Python packages are all distributed with MilkMachine to avoid user installation.
 - Python SciPy may need to be installed manually. See http://www.scipy.org/install.html for platform specific instructions. 
 
