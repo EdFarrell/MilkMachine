@@ -44,6 +44,8 @@ All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "a
 - Python SciPy may need to be installed manually. See http://www.scipy.org/install.html for platform specific instructions. 
 
 ## Issues
+QGIS 2.8 testing is ongoing
+MilkMachine will be added to the QGIS Plugin Repository soon
 Help pages will be updated here and at a future project page. Help, is provided for each input in MilkMachine by hovering over the input.
 Please submit comments, bugs, etc. on the issues page https://github.com/EdFarrell/MilkMachine/issues
 
