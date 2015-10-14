@@ -28,6 +28,11 @@ All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "a
 - **y**: Latitude. numeric, geographic coordinates (WGS84)
 - **altitude**: Elevation in reference to sea level (could also be to "sea floor"). numeric, meters preferred.
 
+1. Click the "Import GPS" button (see image above) and browse to a raw gps file in .csv format
+2. Once the file is loaded, choose a date format and click the "Draw Track" button.
+3. The file will draw a point layer and a line layer on the QGIS map canvas. An ESRI shapefile (.shp) will be created in the source directory for your .csv file. This shapefile will be edited to produce the .kml file
+
+
 ### Create a KML Placemarks
 
 ### Create a KML Tour
