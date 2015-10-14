@@ -20,6 +20,14 @@ tab. Make sure that it is checked. See http://docs.qgis.org/1.8/en/docs/user_man
 - Mac: ~\.qgis2\python\plugins
 - Ubuntu Linux: \user\.qgis2\python\plugins
 
+### Import a .csv file
+All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "altitude"
+- **date**: Date of the location. Can be in these formats; MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD
+- **time**: Time of the location. Must be HH:MM:SS, or HH:MM:SS mmmmmm. mmmmmm is microseconds. See the Python datetime library for full spec (https://docs.python.org/2/library/datetime.html)
+- **x**: Longitude. numeric, geographic coordinates (WGS84)
+- **y**: Latitude. numeric, geographic coordinates (WGS84)
+- **altitude**: Elevation in reference to sea level (could also be to "sea floor"). numeric, meters preferred.
+
 ### Create a KML Placemarks
 
 ### Create a KML Tour
