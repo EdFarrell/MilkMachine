@@ -1,7 +1,7 @@
 #MilkMachine
 
 QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. The code and components developed to support the 250 Miles Crossing Philadelphia project
-http://www.250miles.net/. Milk Machine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment,
+http://www.250miles.net/. MilkMachine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment,
 spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is 
 produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.
 
@@ -44,17 +44,17 @@ All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "a
 - Python SciPy may need to be installed manually. See http://www.scipy.org/install.html for platform specific instructions. 
 
 ## Issues
-QGIS 2.8 testing is ongoing
-MilkMachine will be added to the QGIS Plugin Repository soon
-Help pages will be updated here and at a future project page. Help, is provided for each input in MilkMachine by hovering over the input.
-Please submit comments, bugs, etc. on the issues page https://github.com/EdFarrell/MilkMachine/issues
+- QGIS 2.8 testing is ongoing
+- MilkMachine will be added to the QGIS Plugin Repository soon
+- Help pages will be updated here and at a future project page. Help, is provided for each input in MilkMachine by hovering over the input.
+- Please submit comments, bugs, etc. on the issues page https://github.com/EdFarrell/MilkMachine/issues
 
 ## Credits
 Funding and/or Resources can from these sources;
-University City Science Center
-Wexford Science + Technology
-Philadelphia Redevelopment Authority
-Drexel University
+-University City Science Center
+-Wexford Science + Technology
+-Philadelphia Redevelopment Authority
+-Drexel University
 
 
 
