@@ -11,8 +11,8 @@
 [general]
 name=MilkMachine
 qgisMinimumVersion=2.4
-description=QGIS Python Plugin for creating KML from GPS data
-about=QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. The code and components developed to support the 250 Miles Crossing Philadelphia project http://www.250miles.net/. Milk Machine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment, spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.
+description=QGIS Python Plugin for creating KML from GPS data (http://edfarrell.github.io/MilkMachine/)
+about=QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. The code and components developed to support the 250 Miles Crossing Philadelphia project (http://www.250miles.net/). Milk Machine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment, spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.
 version=2.0.0
 author=Ed Farrell, Sean McGinnis & polakvanbekkum
 email=edward.farrell27@gmail.com
