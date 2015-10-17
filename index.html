@@ -36,6 +36,23 @@
 
 <p>MilkMachine is a QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. The code and components developed to support the 250 Miles Crossing Philadelphia project <a href="http://www.250miles.net/">http://www.250miles.net/</a>. MilkMachine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment, spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.</p>
 
+<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/mm_image1.PNG" alt="MM Image" title="image 1"></p>
+
+<h3>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick-Start</h3>
+
+<p>For full installation instructions see <a href="https://github.com/EdFarrell/MilkMachine">https://github.com/EdFarrell/MilkMachine</a>. The basic install sequence is that you have QGIS 2.4 (or above) installed (Windows, Mac, Linux). Mac and Linux ship with Python, the Windows version of QGIS will bring along it's own version of Python. Make sure that SciPy (<a href="http://www.scipy.org/install.html">http://www.scipy.org/install.html</a>) is installed. On Linux, just run this</p>
+
+<pre><code>$ sudo apt-get install python-scipy
+</code></pre>
+
+<p>On Windows you can use pip</p>
+
+<pre><code>pip install scipy
+</code></pre>
+
+<p>Now that your dependencies are complete, install MilkMachine into the ~/python/plugins directory for QGIS, if you are grabbing the source from GitHub. Or you can just install from the QGIS Plugins repository, just make sure that you have the Plugin Manager set to search for "Experimental" plugins. </p>
+
 <h3>
 <a id="authors-contributors-support" class="anchor" href="#authors-contributors-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors, Contributors, Support</h3>
 
