@@ -1,39 +1,19 @@
-# This file contains metadata for your plugin. Beginning
-# with version 1.8 this is the preferred way to supply information about a
-# plugin. The current method of embedding metadata in __init__.py will
-# be supported until version 2.0
-
-# This file should be included when you package your plugin.
-
-# Mandatory items:
-
-
 [general]
 name=MilkMachine
 qgisMinimumVersion=2.4
 description=QGIS Python Plugin for creating KML from GPS data (http://edfarrell.github.io/MilkMachine/)
-about=QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. The code and components developed to support the 250 Miles Crossing Philadelphia project (http://www.250miles.net/). Milk Machine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment, spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.
+about=QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. This plugin REQUIRES that the Python SciPy (http://www.scipy.org/) library be installed. The code and components developed to support the 250 Miles Crossing Philadelphia project (http://www.250miles.net/). Milk Machine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment, spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced. 
 version=2.0.0
 author=Ed Farrell, Sean McGinnis & polakvanbekkum
 email=edward.farrell27@gmail.com
 
-# end of mandatory metadata
-
 # Optional items:
-
-# Uncomment the following line and add your changelog entries:
 changelog=1.0 - First testing release (experimental).
-
 # tags are comma separated with spaces allowed
 tags=Python, kml, gps, tracking, audio, gps filtering, Google Earth
-
 homepage=http://edfarrell.github.io/MilkMachine
 tracker=https://github.com/EdFarrell/MilkMachine/issues
 repository=https://github.com/EdFarrell/MilkMachine.git
 icon=icon.png
-# experimental flag
 experimental=True
-
-# deprecated flag (applies to the whole plugin, not just a single version
 deprecated=False
-
