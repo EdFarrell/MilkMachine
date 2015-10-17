@@ -19,15 +19,22 @@
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="welcome-to-the-milkmachine-project-page" class="anchor" href="#welcome-to-the-milkmachine-project-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to the MilkMachine Project Page!</h3>
+      <h2>
+<a id="welcome-to-the-milkmachine-project-page" class="anchor" href="#welcome-to-the-milkmachine-project-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to the MilkMachine Project Page!</h2>
 
 <p>MilkMachine is a QGIS Python Plugin for creating KML (keyhole markup language) files from GPS data. The code and components developed to support the 250 Miles Crossing Philadelphia project <a href="http://www.250miles.net/">http://www.250miles.net/</a>. MilkMachine will accept raw gps data in .csv format and allows for creation of KML tours, placemarks, models, audio attachment, spatial smoothing/filtering, and time editing. Once editing is complete, files can be exported to .kml or .kmz. An intermediate shapefile (.shp) is produced that will store the coded attribute information. No cow's milk (or milk of any kind) is produced.</p>
 
 <p><img src="../blob/master/dist/images/mm_image1.PNG?raw=true" alt="MM Image"></p>
 
-<h3>
-<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick-Start</h3>
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick-Start</h2>
+
+<ul>
+<li>QGIS (2.4 or above) (required)</li>
+<li>Python SciPy (required)</li>
+<li>Google Earth (optional, but necessary to view .kml)</li>
+<li>VLC Media Player (optional, but necessary of syncing audio files)</li>
+</ul>
 
 <p>For full installation instructions see <a href="https://github.com/EdFarrell/MilkMachine">https://github.com/EdFarrell/MilkMachine</a>. The basic install sequence is that you have QGIS 2.4 (or above) installed (Windows, Mac, Linux). Mac and Linux ship with Python, the Windows version of QGIS will bring along it's own version of Python. Make sure that SciPy (<a href="http://www.scipy.org/install.html">http://www.scipy.org/install.html</a>) is installed. On Linux, just run this</p>
 
@@ -39,10 +46,28 @@
 <pre><code>pip install scipy
 </code></pre>
 
-<p>Now that your dependencies are complete, install MilkMachine into the ~/python/plugins directory for QGIS, if you are grabbing the source from GitHub. Or you can just install from the QGIS Plugins repository, just make sure that you have the Plugin Manager set to search for "Experimental" plugins. If the install worked, you should see the MilkMachine icon in your QGIS toolbar <img src="https://github.com/EdFarrell/MilkMachine/blob/master/src/MilkMachine/icon.png?raw=true" alt="MM Icon">.</p>
+<p>Now that your dependencies are complete, install MilkMachine into the ~/python/plugins directory for QGIS, if you are grabbing the source from GitHub. Or you can just install from the QGIS Plugins repository, just make sure that you have the Plugin Manager set to search for "Experimental" plugins. If the install worked, you should see the MilkMachine icon in your QGIS toolbar <img src="https://github.com/EdFarrell/MilkMachine/blob/master/src/MilkMachine/icon.png?raw=true" alt="MM Icon">. Google Earth is compatible on PC, Mac, &amp; Linux (<a href="http://www.google.com/earth/">http://www.google.com/earth/</a>), and so is VLC (<a href="http://www.videolan.org/vlc/index.html">http://www.videolan.org/vlc/index.html</a>).</p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
 
 <h3>
-<a id="authors-contributors-support" class="anchor" href="#authors-contributors-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors, Contributors, Support</h3>
+<a id="create-a-kml-file-with-placemarks" class="anchor" href="#create-a-kml-file-with-placemarks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a .kml file with placemarks</h3>
+
+<p>coming soon</p>
+
+<h3>
+<a id="create-a-kml-tour" class="anchor" href="#create-a-kml-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a .kml tour</h3>
+
+<p>coming soon</p>
+
+<h3>
+<a id="sync-an-audio-file-to-your-tour" class="anchor" href="#sync-an-audio-file-to-your-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sync an audio file to your tour</h3>
+
+<p>coming soon</p>
+
+<h2>
+<a id="authors-contributors-support" class="anchor" href="#authors-contributors-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors, Contributors, Support</h2>
 
 <ul>
 <li>The code was developed by Ed Farrell (<a href="https://github.com/EdFarrell" class="user-mention">@EdFarrell</a>) &amp; Sean McGinnis (<a href="https://github.com/SeanKMcGinnis" class="user-mention">@SeanKMcGinnis</a>), and is maintained by Ed. </li>
