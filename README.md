@@ -13,7 +13,6 @@ produced that will store the coded attribute information. No cow's milk (or milk
 - The plugin can be copy/pasted from /src/MilkMachine directly into the QGIS plugin directory, or installed from the QGIS Plugin Repository.
 - "Install" the plugin using the QGIS Desktop plugin manager (Plugins > Manage and Install Plugins...). MilkMachine should show up in the "Installed"
 tab. Make sure that it is checked. See http://docs.qgis.org/1.8/en/docs/user_manual/plugins/plugins.html for full documentation.
-- MilkMachine is currently an "experimental" plugin, so make sure that options is checked in the plugin manager (in Settings...).
 
 #### Install Directories (don't worry about this is you install from the Repository)
 - Windows: C:\Users\<username>\.qgis2\python\plugins
