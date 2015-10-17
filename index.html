@@ -52,9 +52,37 @@
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
 
 <h3>
+<a id="input-file-format" class="anchor" href="#input-file-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input File Format</h3>
+
+<p>Before you get started with using MilkMachine, you have to have some GPS data! To use MilkMachine, those data must be stored in a comma separated file (*.csv) and have 5 columns with sequential GPS locations. The columns that must be present (you can have more than these) are; </p>
+
+<ul>
+<li>
+<strong>date</strong>: Date of the location. Can be in these formats; MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD</li>
+<li>
+<strong>time</strong>: Time of the location. Must be HH:MM:SS, or HH:MM:SS.mmmmmm. mmmmmm is microseconds. See the Python datetime library for full spec (<a href="https://docs.python.org/2/library/datetime.html">https://docs.python.org/2/library/datetime.html</a>)</li>
+<li>
+<strong>x</strong>: Longitude. numeric, geographic coordinates (WGS84)</li>
+<li>
+<strong>y</strong>: Latitude. numeric, geographic coordinates (WGS84)</li>
+<li>
+<strong>altitude</strong>: Elevation in reference to sea level (could also be to "sea floor"). numeric, meters preferred.</li>
+</ul>
+
+<h3>
 <a id="create-a-kml-file-with-placemarks" class="anchor" href="#create-a-kml-file-with-placemarks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a .kml file with placemarks</h3>
 
-<p>coming soon</p>
+<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_import.PNG?raw=true" alt="Figure 1">
+<em><strong>Figure 1.</strong></em> MilkMachine import raw file. The around the block file can be found here <a href="https://github.com/EdFarrell/MilkMachine/tree/master/sampledata/aroundtheblock">https://github.com/EdFarrell/MilkMachine/tree/master/sampledata/aroundtheblock</a>
+<img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_import.PNG?raw=true" alt="Figure 2">
+<em><strong>Figure 2.</strong></em> MilkMachine import layer drawn on map canvas</p>
+
+<ol>
+<li>Import a raw .csv GPS file by clicking the "Import GPS" button (Figure 1) and browsing to your csv file. The file must be formatted properly (see above) and have valid data in each of the rows. Once the file path appears in MilkMachine, click the "Draw Track" button. This will convert the .csv file to an ESRI Shapefile and the Shapefile will be added to the table of contents and the map canvas (Figure 2). The Shapefile is written to the same directory of your .csv file, and named the same. Also, many columns are added to the Shapefile, which will hold the .kml tag value pairs. Now your ready to edit!</li>
+<li>Open up a QGIS edit session on the <strong>aroundtheblock</strong> layer.</li>
+<li>Select all of the features in the <strong>aroundtheblock</strong> layer, and make sure that the layer is selected in the table of content. Only features that are selected will be changed by MilkMachine.</li>
+<li>Navigate to the "Placemarks" tab. The <strong>aroundtheblock</strong> layer should be in the text box. Click the "Edit Points" checkbox (Figure 3).</li>
+</ol>
 
 <h3>
 <a id="create-a-kml-tour" class="anchor" href="#create-a-kml-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a .kml tour</h3>
