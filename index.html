@@ -83,11 +83,22 @@
 <li>Open up a QGIS edit session on the <strong>aroundtheblock</strong> layer.</li>
 <li>Select all of the features in the <strong>aroundtheblock</strong> layer, and make sure that the layer is selected in the table of content. Only features that are selected will be changed by MilkMachine.</li>
 <li>Navigate to the "Placemarks" tab. The <strong>aroundtheblock</strong> layer should be in the text box. Click the "Edit Points" checkbox (Figure 3). Now you are ready create your placemarks!</li>
-<li>f</li>
+<li>The "Icon Style" options control how the placemark will look. Here, I chose to color my placemark blue. The default placemark is the pushpin, but you can link to any icon. Just add the full URL to the "icon" option. You can also control how the label will look by using the "Label Style" options. Here, I took the defaults so it the labels will appear white. If you don't want labels at all, just change the scale value to 0. All of these options are taken directly from the the KML elements reference. You can hover over the options in MilkMachine to get an idea of what the field does, or you can go directly to the API reference pages (<a href="https://developers.google.com/kml/documentation/kmlreference">https://developers.google.com/kml/documentation/kmlreference</a>).</li>
+<li>Navigate over to the "Export and Details" tab in MilkMachine. Click the "Export Track" button (Figure 4) and save as <strong>"aroundtheblock_basicplacemark.kml"</strong> in a directory of your choice.</li>
 </ol>
 
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_placemark.PNG?raw=true" alt="Figure 3"><br>
-<em><strong>Figure 3.</strong> Create placemarks for all of the selected features</em></p>
+<em><strong>Figure 3.</strong> Create placemarks for all of the selected features</em>  </p>
+
+<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_placemark_export.PNG?raw=true" alt="Figure 4"><br>
+<em><strong>Figure 4.</strong> Click the export button to export to .kml.</em></p>
+
+<ol>
+<li>Open your newly exported <strong>aroundtheblock_basicplacemark.kml</strong> file by double clicking it (you must have Google Earth installed). It will launch in Google Earth (Figure 5). You'll notice that this track is a walk around the block in Philadelphia, PA, and that the placemarks are blue and have white labels. Click on the placemarks to see what time the placemark occured.</li>
+</ol>
+
+<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_placemark_GE.PNG?raw=true" alt="Figure 5"><br>
+<em><strong>Figure 5.</strong> Check out your .kml file in Google Earth.</em></p>
 
 <h3>
 <a id="create-a-kml-tour" class="anchor" href="#create-a-kml-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a .kml tour</h3>
