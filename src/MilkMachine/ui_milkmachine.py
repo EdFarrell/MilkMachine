@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\Users\Edward\.qgis2\python\plugins\MilkMachine\ui_milkmachine.ui'
 #
-# Created: Tue Oct 13 13:03:04 2015
+# Created: Mon Oct 19 20:50:26 2015
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -1306,7 +1306,7 @@ class Ui_MilkMachine(object):
         self.buttonImport_audio.setText(_translate("MilkMachine", "Import Audio", None))
         self.pushButton_sync.setToolTip(_translate("MilkMachine", "<html><head/><body><p>Syncronize the audio with the GPS track. Press the button while a track is selected that matches the audio file and a marker will be produced that shows where the audio starts in the GPS track.<br/></p></body></html>", None))
         self.checkBox_headoftrack.setToolTip(_translate("MilkMachine", "<html><head/><body><p>If checked, a green marker is drawn when the &quot;Draw Track&quot; button is pressed to indicate where the track starts.</p></body></html>", None))
-        self.checkBox_headoftrack.setText(_translate("MilkMachine", "Draw \"Head of Track\"", None))
+        self.checkBox_headoftrack.setText(_translate("MilkMachine", "Indicate start of GPS Track", None))
         self.checkBox_import_indicator.setToolTip(_translate("MilkMachine", "<html><head/><body><p>If checked, QGIS will &quot;select&quot; the point that matches the time on the audio file. The map will move along with the audio.</p></body></html>", None))
         self.checkBox_import_indicator.setText(_translate("MilkMachine", "Indicate Selected Point", None))
         self.checkBox_sync_point.setToolTip(_translate("MilkMachine", "<html><head/><body><p>If selected, when the sync button is pushed, a blue point will be added to the map at the point that matches the audio start time. A red point will be added to the map at the point that matches the audio end time. </p></body></html>", None))

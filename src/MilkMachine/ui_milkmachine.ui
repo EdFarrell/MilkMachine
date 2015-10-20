@@ -432,7 +432,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If checked, a green marker is drawn when the &amp;quot;Draw Track&amp;quot; button is pressed to indicate where the track starts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
-      <string>Draw &quot;Head of Track&quot;</string>
+      <string>Indicate start of GPS Track</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_import_indicator">
