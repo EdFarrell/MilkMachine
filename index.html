@@ -100,7 +100,7 @@
 <li>Open up a QGIS edit session on the <strong>aroundtheblock</strong> layer.</li>
 <li>Select all of the features in the <strong>aroundtheblock</strong> layer, and make sure that the layer is selected in the table of content. Only features that are selected will be changed by MilkMachine.</li>
 <li>Navigate to the "Placemarks" tab. The <strong>aroundtheblock</strong> layer should be in the text box. Click the "Edit Points" checkbox (Figure 3). Now you are ready create your placemarks!</li>
-<li>The "Icon Style" options control how the placemark will look. Here, I chose to color my placemark blue. The default placemark is the pushpin, but you can link to any icon. Just add the full URL to the "icon" option. You can also control how the label will look by using the "Label Style" options. Here, I took the defaults so it the labels will appear white. If you don't want labels at all, just change the scale value to 0. All of these options are taken directly from the the KML elements reference. You can hover over the options in MilkMachine to get an idea of what the field does, or you can go directly to the API reference pages (<a href="https://developers.google.com/kml/documentation/kmlreference">https://developers.google.com/kml/documentation/kmlreference</a>).</li>
+<li>The "Icon Style" options control how the placemark will look. Here, I chose to color my placemark blue. The default placemark is the pushpin, but you can link to any icon. Just add the full URL to the "icon" option. You can also control how the label will look by using the "Label Style" options. Here, I took the defaults so it the labels will appear white. If you don't want labels at all, just change the scale value to 0. All of these options are taken directly from the the KML elements reference. You can hover over the options in MilkMachine to get an idea of what the field does, or you can go directly to the API reference pages (<a href="https://developers.google.com/kml/documentation/kmlreference">https://developers.google.com/kml/documentation/kmlreference</a>). Click the "Apply" button to build edit the <strong>aroundtheblock</strong> layer, this will apply the icon settings.</li>
 <li>Navigate over to the "Export and Details" tab in MilkMachine. Click the "Export Track" button (Figure 4) and save as <strong>"aroundtheblock_basicplacemark.kml"</strong> in a directory of your choice.</li>
 </ol>
 
@@ -116,6 +116,16 @@
 
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_placemark_GE.PNG?raw=true" alt="Figure 5"><br>
 <em><strong>Figure 5.</strong> Check out your .kml file in Google Earth.</em></p>
+
+<ol>
+<li>Let's add models to the track! In the Placemarks tab in the Point Model options (Figure 6), click the folder icon for the "link" option and navigate to your custom made .DAE Collada file. Here we will use the one provided in example data that can be found at <a href="https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/blue_sphere.dae">https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/blue_sphere.dae</a>. Leave the longitude and latitude columns blank (they are used to override the lat/long), and uncheck the "z" checkbox. Put a 1 in for the altitude, which will set the altitude for all of the models to be 1 meter, instead of the altitude that set in the source file. Leave the scale at 1. Click "apply". </li>
+</ol>
+
+<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_model.PNG?raw=true" alt="Figure 6"><br>
+<em><strong>Figure 6.</strong> Model settings for blue sphere.</em>  </p>
+
+<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_model_GE.PNG?raw=true" alt="Figure 7"><br>
+<em><strong>Figure 7.</strong> Blue spheres in Google Earth.</em></p>
 
 <h2>
 <a id="example-2-create-a-kml-tour" class="anchor" href="#example-2-create-a-kml-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example 2: Create a .kml tour</h2>
