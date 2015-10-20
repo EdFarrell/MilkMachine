@@ -89,11 +89,12 @@
 <h2>
 <a id="example-1-create-a-kml-file-with-placemarks" class="anchor" href="#example-1-create-a-kml-file-with-placemarks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example 1: Create a .kml file with placemarks</h2>
 
-<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_import.PNG?raw=true" alt="Figure 1"><br>
-<em><strong>Figure 1.</strong> MilkMachine import raw file. The around the block file can be found here</em> <a href="https://github.com/EdFarrell/MilkMachine/tree/master/sampledata/aroundtheblock">https://github.com/EdFarrell/MilkMachine/tree/master/sampledata/aroundtheblock</a>  </p>
+<pre><code>![Figure 1](https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_import.PNG?raw=true)  
+_**Figure 1.** MilkMachine import raw file. The around the block file can be found here_                 https://github.com/EdFarrell/MilkMachine/tree/master/sampledata/aroundtheblock  
 
-<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_import.PNG?raw=true" alt="Figure 2"><br>
-<em><strong>Figure 2.</strong> MilkMachine import layer drawn on map canvas</em></p>
+![Figure 2](https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_import.PNG?raw=true)  
+_**Figure 2.** MilkMachine import layer drawn on map canvas_
+</code></pre>
 
 <ol>
 <li>Import a raw .csv GPS file by clicking the "Import GPS" button (Figure 1) and browsing to your csv file. The file must be formatted properly (see above) and have valid data in each of the rows. Once the file path appears in MilkMachine, click the "Draw Track" button. This will convert the .csv file to an ESRI Shapefile and the Shapefile will be added to the table of contents and the map canvas (Figure 2). The Shapefile is written to the same directory of your .csv file, and named the same. Also, many columns are added to the Shapefile, which will hold the .kml tag value pairs. Now your ready to edit!</li>
@@ -101,31 +102,31 @@
 <li>Select all of the features in the <strong>aroundtheblock</strong> layer, and make sure that the layer is selected in the table of content. Only features that are selected will be changed by MilkMachine.</li>
 <li>Navigate to the "Placemarks" tab. The <strong>aroundtheblock</strong> layer should be in the text box. Click the "Edit Points" checkbox (Figure 3). Now you are ready create your placemarks!</li>
 <li>The "Icon Style" options control how the placemark will look. Here, I chose to color my placemark blue. The default placemark is the pushpin, but you can link to any icon. Just add the full URL to the "icon" option. You can also control how the label will look by using the "Label Style" options. Here, I took the defaults so it the labels will appear white. If you don't want labels at all, just change the scale value to 0. All of these options are taken directly from the the KML elements reference. You can hover over the options in MilkMachine to get an idea of what the field does, or you can go directly to the API reference pages (<a href="https://developers.google.com/kml/documentation/kmlreference">https://developers.google.com/kml/documentation/kmlreference</a>). Click the "Apply" button to build edit the <strong>aroundtheblock</strong> layer, this will apply the icon settings.</li>
-<li>Navigate over to the "Export and Details" tab in MilkMachine. Click the "Export Track" button (Figure 4) and save as <strong>"aroundtheblock_basicplacemark.kml"</strong> in a directory of your choice.</li>
-</ol>
+<li>
+<p>Navigate over to the "Export and Details" tab in MilkMachine. Click the "Export Track" button (Figure 4) and save as <strong>"aroundtheblock_basicplacemark.kml"</strong> in a directory of your choice.</p>
 
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_placemark.PNG?raw=true" alt="Figure 3"><br>
 <em><strong>Figure 3.</strong> Create placemarks for all of the selected features</em>  </p>
 
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_placemark_export.PNG?raw=true" alt="Figure 4"><br>
 <em><strong>Figure 4.</strong> Click the export button to export to .kml.</em></p>
-
-<ol>
-<li>Open your newly exported <strong>aroundtheblock_basicplacemark.kml</strong> file by double clicking it (you must have Google Earth installed). It will launch in Google Earth (Figure 5). You'll notice that this track is a walk around the block in Philadelphia, PA, and that the placemarks are blue and have white labels. Click on the placemarks to see what time the placemark occured.</li>
-</ol>
+</li>
+<li>
+<p>Open your newly exported <strong>aroundtheblock_basicplacemark.kml</strong> file by double clicking it (you must have Google Earth installed). It will launch in Google Earth (Figure 5). You'll notice that this track is a walk around the block in Philadelphia, PA, and that the placemarks are blue and have white labels. Click on the placemarks to see what time the placemark occured.</p>
 
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_placemark_GE.PNG?raw=true" alt="Figure 5"><br>
 <em><strong>Figure 5.</strong> Check out your .kml file in Google Earth.</em></p>
-
-<ol>
-<li>Let's add models to the track! In the Placemarks tab in the Point Model options (Figure 6), click the folder icon for the "link" option and navigate to your custom made .DAE Collada file. Here we will use the one provided in example data that can be found at <a href="https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/blue_sphere.dae">https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/blue_sphere.dae</a>. Leave the longitude and latitude columns blank (they are used to override the lat/long), and uncheck the "z" checkbox. Put a 1 in for the altitude, which will set the altitude for all of the models to be 1 meter, instead of the altitude that set in the source file. Leave the scale at 1. Click "apply". </li>
-</ol>
+</li>
+<li>
+<p>Let's add models to the track! In the Placemarks tab in the Point Model options (Figure 6), click the folder icon for the "link" option and navigate to your custom made .DAE Collada file. Here we will use the one provided in example data that can be found at <a href="https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/blue_sphere.dae">https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/blue_sphere.dae</a>. Leave the longitude and latitude columns blank (they are used to override the lat/long), and uncheck the "z" checkbox. Put a 1 in for the altitude, which will set the altitude for all of the models to be 1 meter, instead of the altitude that set in the source file. Leave the scale at 1. Click "apply". </p>
 
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_model.PNG?raw=true" alt="Figure 6"><br>
 <em><strong>Figure 6.</strong> Model settings for blue sphere.</em>  </p>
 
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/dist/images/example1_model_GE.PNG?raw=true" alt="Figure 7"><br>
 <em><strong>Figure 7.</strong> Blue spheres in Google Earth.</em></p>
+</li>
+</ol>
 
 <h2>
 <a id="example-2-create-a-kml-tour" class="anchor" href="#example-2-create-a-kml-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example 2: Create a .kml tour</h2>
