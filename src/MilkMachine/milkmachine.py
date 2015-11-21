@@ -3204,7 +3204,7 @@ class MilkMachine:
 
             #################################
             ## Tour and Camera
-
+            globalcounter = 0
             for f in self.ActiveLayer.getFeatures(): #  QgsFeatureIterator #[u'2014/06/06 10:38:48', u'Time:10:38:48, Latitude: 39.965949, Longitude: -75.172239, Speed: 0.102851, Altitude: -3.756733']
                 currentatt = f.attributes()
 
@@ -3426,7 +3426,8 @@ class MilkMachine:
                         if flytodict['duration']:
                             flyto = playlist.newgxflyto(gxduration=float(flytodict['duration']))
                         elif flytodict['duration'] is None:
-                            flyto = playlist.newgxflyto(gxduration=float(Durations[cc]))
+                            flyto = playlist.newgxflyto(gxduration=float(Durations[globalcounter]))
+
                         else:
                             flyto = playlist.newgxflyto()
                         if flytodict['flyToMode']:
@@ -3586,7 +3587,7 @@ class MilkMachine:
                         if flytodict['duration']:
                             flyto = playlist.newgxflyto(gxduration=float(flytodict['duration']))
                         elif flytodict['duration'] is None:
-                            flyto = playlist.newgxflyto(gxduration=float(Durations[cc]))
+                            flyto = playlist.newgxflyto(gxduration=float(Durations[globalcounter]))
                         else:
                             flyto = playlist.newgxflyto()
                         if flytodict['flyToMode']:
@@ -3703,7 +3704,7 @@ class MilkMachine:
                     #kml.document.camera = simplekml.Camera()
                     #kml.document.camera = flyto.camera
 
-
+                globalcounter += 1
 
 
 
