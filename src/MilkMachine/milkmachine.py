@@ -28,6 +28,7 @@ import resources_rc
 # Import the code for the dialog
 from milkmachinedialog import MilkMachineDialog
 import os, sys, traceback
+import decimal
 os.sys.path.append(os.path.dirname(__file__))
 
 import gpxpy
@@ -3191,12 +3192,15 @@ class MilkMachine:
             Durations = []
             for iii, vvv in enumerate(time1):
                 tdobj = time1[iii+1] - vvv
-                durstring = str(tdobj.seconds) + '.' + str(tdobj.microseconds/float(1000000)).split('.')[1]
+                # durstring = str(tdobj.seconds) + '.' + str(tdobj.microseconds/float(1000000)).split('.')[1]
+                dur = tdobj.seconds + decimal.Decimal(tdobj.microseconds/float(1000000))
+                durstring = format(dur, '.6f')
                 Durations.append(durstring)
+                self.logger.info('start: {0}, end: {1}, diff: {2}'.format(vvv, time1[iii+1], durstring))
                 if (iii+1) == endRow:
                     Durations.append(durstring)
                     break
-            self.logger.info('Durations: %s' % Durations)
+            # self.logger.info('Durations: %s' % Durations)
             # self.logger.info('Len Durations: %s' % len(Durations))
 
 
