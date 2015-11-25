@@ -132,9 +132,22 @@
 
 <p>Creating a Google Earth tour in MilkMachine is easily accomplished by importing a gps file, applying models to the gps locations, then creating the tour in the "Tour" tab of MilkMachine. As noted above, the layer that you are editing in the table of contents must be open for editing in QGIS, and you must "select" the points that will be part of the tour. </p>
 
-<p>MilkMachine supports both Google Earth  and  based tours (see <a href="https://developers.google.com/kml/documentation/cameras">KML Camera Documentation</a>).</p>
+<p>MilkMachine supports both Google Earth <strong>Camera</strong> and <strong>LookAt</strong> based tours (see <a href="https://developers.google.com/kml/documentation/cameras">KML Camera Documentation</a>). The field names are taken directly from the KML documentation as well as the help (hover over the field for help popup). If you need more explanation of a field, use the <a href="https://developers.google.com/kml/documentation/kmlreference?hl=en">KML Reference</a>.</p>
 
 <p>MilkMachine will only accept COLLADA files (.dae) for models. These can be made with software such as SketchUp (<a href="http://www.sketchup.com/">http://www.sketchup.com/</a>). Once imported into MilkMachine, the model can be scaled to make it larger or smaller. If you don't want the models to appear in the tour, give them a "scale" of 0 in the "Placemarks" tab.</p>
+
+<h3>
+<a id="example-2a-follow-behind-tour" class="anchor" href="#example-2a-follow-behind-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example 2a: Follow Behind Tour</h3>
+
+<p>A "Follow Behind" Tour will place 1 KML camera for every GPS point. As the GPS points progress through time, the <strong>Camera</strong> will follow. The user can control the relative orientation of the <strong>Camera</strong> using MilkMachine.</p>
+
+<ol>
+<li>Follow the steps in Example 1 to import gps, and add models. In this example I am using a blue cube.</li>
+<li>Remember, in order to edit you must turn editing "on" and "select" the points that will have the tour applied.</li>
+<li>Open up the "Tour" tab an click the "Edit Tour" checkbox to enable the tour fields (Figure 8). Give your tour a name in the "Tour Name" box (this will appear in Google Earth). In the <strong>Camera</strong> content box choose the "Follow Behind" tab (Figure 8). </li>
+<li>I would like the <strong>Camera</strong> to follow my points from above, looking down toward the ground. So, I set my altitude to 10 (meters) and the altitudemode to "relativeToModel" since the model has an altitude of it's own.</li>
+<li>
+</ol>
 
 <h2>
 <a id="example-3-sync-an-audio-file-to-your-tour" class="anchor" href="#example-3-sync-an-audio-file-to-your-tour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example 3: Sync an audio file to your tour</h2>
