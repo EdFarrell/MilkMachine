@@ -142,14 +142,14 @@
 <p>A "Follow Behind" Tour will place 1 KML camera for every GPS point. As the GPS points progress through time, the <strong>Camera</strong> will follow. The user can control the relative orientation of the <strong>Camera</strong> using MilkMachine.</p>
 
 <ol>
-<li>Follow the steps in Example 1 to import gps, and add models. In this example I am using a blue cube.</li>
+<li>Follow the steps in Example 1 to import gps, and add models. In this example I am using a blue cube found in the <a href="https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/cube_blue_1m.dae">sample data directory</a> .</li>
 <li>Remember, in order to edit you must turn editing "on" and "select" the points that will have the tour applied.</li>
 <li>Open up the "Tour" tab an click the "Edit Tour" checkbox to enable the tour fields (Figure 8). Give your tour a name in the "Tour Name" box (this will appear in Google Earth). In the <strong>Camera</strong> content box choose the "Follow Behind" tab (Figure 8). </li>
 <li>I would like the <strong>Camera</strong> to follow my points from above, looking down toward the ground. So, I set my altitude to 10 (meters) and the altitudemode to "relativeToModel" since the model has an altitude of it's own. This will force the altitude of the <strong>Camera</strong> to always stay 10m above the GPS point. (Figure 9)</li>
 <li>The range is the horizontal distance from the GPS point. Here, I set it to 15m.</li>
 <li>The tilt is the rotation of the camera measured in degrees. 0 degrees tilt would be looking straight down at the ground. A 90 degree tilt would be looking horizontal. A 180 degree tilt would be looking straight up toward the sky. Here is set it to 48 degrees (a right triangle).</li>
 <li>Set the follow angle to be 180 degrees. This will set the <strong>Camera</strong> directly behind the direction of the sequential GPS points. See Figure 10 for description of follow locations.</li>
-<li>Leave the default smoother number of 10. The heading angle is calculated by averaging the angles between sequential GPS points. The smoother number determines how many points are used in the averaging function. A higher number will give a "smoother" track.</li>
+<li>Leave the default smoother number of 10. The heading angle is calculated by averaging the angles between sequential GPS points. The smoother number determines how many points are used in the averaging function. A higher number will give a "smoother" track. (<strong>Note:</strong> if the GPS is stationary for long enough the heading angle will be zero because there will be no difference in locations between points resulting in no discernible angles, so the angle will default to zero or North).</li>
 <li>Leave the FlyToMode set to "smooth". This will create a smooth transition between tour points.</li>
 <li>
 <p>Leave the "Time Stamp Duration" check box checked. This tells MilkMachine to use the time stamps as the duration of the tour points.</p>
@@ -163,6 +163,14 @@
 <p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/src/MilkMachine/followangle.png?raw=true" alt="Figure 10"><br>
 <em><strong>Figure 10.</strong> figure caption.</em>  </p>
 </li>
+<li><p>Click "Apply" to apply all of your Tour settings. You will see a blue success message above the map canvas in QGIS if applied successfully. </p></li>
+<li>Go over to the "Export and Details" tab in MilkMachine and click the "Export Track" button. Save this file as "example2a.kml".</li>
+<li>
+<p>Open example2a.kml in Google Earth and take the tour! Take a look at the <a href="https://github.com/EdFarrell/MilkMachine/blob/master/sampledata/aroundtheblock/example2a.kml">example2a.kml source file</a> to make sure yours matches up.</p>
+
+<p><img src="https://github.com/EdFarrell/MilkMachine/blob/master/src/MilkMachine/example2a_tour.png?raw=true" alt="Figure 11"><br>
+<em><strong>Figure 10.</strong> figure caption.</em> </p>
+</li>
 </ol>
 
 <h2>
@@ -175,6 +183,7 @@
 
 <ul>
 <li>Custom labels for icons. This will probably include a label field in the attribute table that holds text.</li>
+<li>Rotation angles for Google Earth models.</li>
 </ul>
 
 <h1>
