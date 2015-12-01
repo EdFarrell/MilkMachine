@@ -16,7 +16,7 @@ produced that will store the coded attribute information. No cow's milk (or milk
 - "Install" the plugin using the QGIS Desktop plugin manager (Plugins > Manage and Install Plugins...). MilkMachine should show up in the "Installed"
 tab. Make sure that it is checked. See http://docs.qgis.org/1.8/en/docs/user_manual/plugins/plugins.html for full documentation.
 
-#### Install Directories (don't worry about this is you install from the Repository)
+##### Install Directories (don't worry about this if you install from the Repository)
 - Windows: C:\Users\<username>\.qgis2\python\plugins
 - Mac: ~\.qgis2\python\plugins
 - Ubuntu Linux: \user\.qgis2\python\plugins
@@ -33,11 +33,6 @@ All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "a
 2. Once the file is loaded, choose a date format and click the "Draw Track" button.
 3. The file will draw a point layer on the QGIS map canvas. An ESRI shapefile (.shp) will be created in the source directory for your .csv file. This shapefile will be edited to produce the .kml file
 
-
-### Create a KML Placemarks
-
-### Create a KML Tour
-
 ## Dependencies
 
 - QGIS 2.4, 2.6, 2.8
@@ -52,10 +47,10 @@ All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "a
 
 ## Credits
 Funding and/or Resources can from these sources;
--University City Science Center
--Wexford Science + Technology
--Philadelphia Redevelopment Authority
--Drexel University
+- University City Science Center
+- Wexford Science + Technology
+- Philadelphia Redevelopment Authority
+- Drexel University
 
 
 
