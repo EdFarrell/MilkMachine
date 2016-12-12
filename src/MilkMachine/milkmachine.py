@@ -52,6 +52,9 @@ from numpy.random import randn
 from scipy.interpolate import UnivariateSpline
 #from pylab import *
 
+# helper functions
+import MMImport
+
 UserOs = platform.platform()
 WindOs = re.search('Windows', UserOs, re.I)
 
@@ -2290,108 +2293,19 @@ class MilkMachine:
             self.iface.messageBar().pushMessage("Error", "Failed to import specified file. Please see error log at: {0}".format(self.loggerpath), level=QgsMessageBar.CRITICAL, duration=5)
 
     def drawtrack(self):
-
         try:
             ftype = self.gpsfile.split(".")[-1].lower()
             if self.gpsfile:
                 if ftype == 'csv':
-
-                    fields = ['date', 'time', 'x', 'y', 'altitude']
-                    userfields = []
-                    import csv
-                    with open(self.gpsfile, 'rb') as csvfile:
-                        reader = csv.reader(csvfile, delimiter=',')
-                        i = 0
-                        for row in reader:
-                            if i == 0: #header row
-                                #check for x
-                                for f in fields:
-                                    Fre = re.search(f, str(row), re.I)
-                                    if Fre:
-                                        userfields.append(Fre.group())
-                                    else:
-                                        # hang an error
-                                        self.logger.error('CSV column names import error. Failed on: %s' % f)
-                                        QMessageBox.critical( self.iface.mainWindow(),"Column Name Error", "Missing column: %s\n\nPlease reformat csv file. Column headers should include: 'date', 'time', 'x', 'y', 'altitude'" %(f))
-                            else:
-                                pass
-                            i += 1
-
-                        if i < 10:
-                            QMessageBox.warning( self.iface.mainWindow(),"Friendly Import Warning", "This track is pretty short, which if fine. However, some of the track smoothing and tour automation won't work great because it is geared for longer tracks. Give it a try anyway and let us know if you encounter an error or serious problem at https://github.com/EdFarrell/MilkMachine/issues" )
-
-                    if len(userfields) == 5:
-                        self.logger.info('headers %s' % userfields)
-                        self.iface.messageBar().pushMessage("Success", "User file column headers good: {0}".format(self.gpsfile), level=QgsMessageBar.INFO, duration=5)
-
-                        #http://qgis.org/api/classQgsVectorLayer.html
-                        layername = self.gpsfile.split(".")[0].split('/')[-1]
-                        #crs = QgsCoordinateReferenceSystem(4326).toProj4()
-                        crs = 'EPSG:4326'
-                        uri = "file:/" + self.gpsfile + "?delimiter=%s&xField=%s&yField=%s&crs=%s" % (",", "x", "y", crs)
-                        self.logger.info('uri: %s' % uri)
-                        Qlayer = QgsVectorLayer(uri, layername, "delimitedtext")
-
-                        # check the rest of the fields. required are date, time, and z
-                        fdict = self.field_indices(Qlayer)
-                        self.logger.info('fdict : %s' %(fdict))
-
-                        # save the kml layer as
-                        shapepath = self.gpsfile.split(".")[0] + '.shp'
-                        shapepath_line = self.gpsfile.split(".")[0] + '_line.shp'
-                        #shapepath_dup = self.gpsfile.split(".")[0] + '_duplicate.shp'
-
-                        QgsVectorFileWriter.writeAsVectorFormat(Qlayer, shapepath, "utf-8", None, "ESRI Shapefile")  # working copy
-                        #bring the shapefile back in, and render it on the map
-                        shaper = QgsVectorLayer(shapepath, layername, "ogr")
-                        shaper.dataProvider().addAttributes( [QgsField("datetime",QVariant.String), QgsField("camera",QVariant.String), QgsField("flyto",QVariant.String), QgsField("iconstyle", QVariant.String), QgsField("labelstyle", QVariant.String), QgsField("model", QVariant.String), QgsField("lookat", QVariant.String) , QgsField("symbtour", QVariant.String)])
-                        shaper.updateFields()
-
-                        self.fields = self.field_indices(shaper)
-                        # calculate the datetime field
-                        # idx = self.fields['datetime']  #feature.attributes()[idx]
-                        fid_dt = []
-                        dateformat = self.dlg.ui.comboBox_importDateFormat.currentText()
-                        # model_altitude = []
-                        try:
-                            for f in shaper.getFeatures():
-                                # currentatt = f.attributes()[self.fields['datetime']]  # this should be self.fields['Name']
-                                pointdate = f.attributes()[self.fields['date']]  #2014/06/06
-                                pointtime = f.attributes()[self.fields['time']]
-                                # format for microseconds
-
-                                sec_pieces = pointtime.split(':')[2].split('.')
-                                if len(sec_pieces) == 1:
-                                    microsec = 0
-                                elif len(sec_pieces) == 2:
-                                    microsec = int(float('0.' + sec_pieces[1]) * 1000000)
-
-                                #['mm/dd/yyyy', 'dd/mm/yyyy', 'yyyy/mm/dd']
-                                if dateformat == 'mm/dd/yyyy':
-                                    current_dt = datetime.datetime(int(pointdate.split('/')[2]), int(pointdate.split('/')[0]), int(pointdate.split('/')[1]), int(pointtime.split(':')[0]), int(pointtime.split(':')[1]), int(pointtime.split(':')[2]), microsec)
-                                elif dateformat == 'dd/mm/yyyy':
-                                    current_dt = datetime.datetime(int(pointdate.split('/')[2]), int(pointdate.split('/')[1]), int(pointdate.split('/')[0]), int(pointtime.split(':')[0]), int(pointtime.split(':')[1]), int(pointtime.split(':')[2]), microsec)
-                                elif dateformat == 'yyyy/mm/dd':
-                                    current_dt = datetime.datetime(int(pointdate.split('/')[0]), int(pointdate.split('/')[1]), int(pointdate.split('/')[2]), int(pointtime.split(':')[0]), int(pointtime.split(':')[1]), int(pointtime.split(':')[2]), microsec)
-
-                                fid_dt.append([f.id(), current_dt.strftime("%Y/%m/%d %H:%M:%S %f")])
-
-                            shaper.startEditing()
-                            shaper.beginEditCommand('datetime')
-                            for i,v in enumerate(fid_dt):
-                                shaper.changeAttributeValue(v[0],self.fields['datetime'], v[1])
-                            shaper.endEditCommand()
-                            shaper.commitChanges()
-
-                        except:
-                            self.logger.error('Error writing time to datetime column, user presented with messagebox')
-                            self.logger.exception(traceback.format_exc())
-                            QMessageBox.critical( self.iface.mainWindow(),"Date & Time Import Error", "An error occured while converting the 'date' and 'time' fields into a Python datetime object. Please make sure that your specified the correct date format, and the time format is HH:MM:SS. If your seconds are fractional, then please express this as SS.xxxxxx")
-
-
-                        QgsMapLayerRegistry.instance().addMapLayer(shaper)
-
-
+                    shaper = MMImport.loadCSVLayer(
+                        dateFormat=self.dlg.ui.comboBox_importDateFormat.currentText(),
+                        gpsPath=self.gpsfile,
+                        logger=self.logger,
+                        mainWindow=self.iface.mainWindow(),
+                        messageBar=self.iface.messageBar(),
+                        messageBox=QMessageBox
+                    )
+                    QgsMapLayerRegistry.instance().addMapLayer(shaper)
                 if ftype == 'kml':
 
                     self.dlg.ui.lineEdit_ImportGPS.setText("")  # clear the text of the input
