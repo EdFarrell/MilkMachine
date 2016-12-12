@@ -3079,7 +3079,7 @@ class MilkMachine:
     def exportToFile(self):
         try:
             audioHREF = self.dlg.ui.lineEdit_export_audio.text()
-            audioOffset = self.audio_offset(audioHREF)
+            audioOffset = self.audio_offset(audioHREF) if audioHREF is not None else None
             exportPath = QFileDialog.getSaveFileName(None, "Save Track", lastDirectory, "(*.kml *.kmz *.gpx *.shp *.geojson *.csv)")
             MMExport.exportToFile(
                 activeLayer=self.ActiveLayer,
