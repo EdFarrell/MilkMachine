@@ -11,7 +11,7 @@ from MMExport import exportToFile
 import test_MMImport
 
 class TestMMExport(unittest.TestCase):
-    def testExportToFileWithCamera(self):
+    def testExportToFileWithCameraOffset(self):
         QgsApplication.setPrefixPath("/usr/share/qgis", True)
         qgs = QgsApplication([], False)
         # load providers
@@ -63,7 +63,72 @@ class TestMMExport(unittest.TestCase):
             activeLayer=layer,
             audioHREF="",
             audioOffset=0,
-            exportPath="amsterdam-yymmdd-camera.kml",
+            exportPath="amsterdam-yymmdd-camera-offset.kml",
+            fields=fields,
+            lastDirectory=".",
+            logger=logger,
+            loggerPath=loggerPath,
+            messageBar=messageBar
+        )
+
+        self.assertTrue(messageBar.gotSuccess)
+
+        # qgs.exitQgis()
+
+    def testExportToFileWithCameraRange(self):
+        QgsApplication.setPrefixPath("/usr/share/qgis", True)
+        qgs = QgsApplication([], False)
+        # load providers
+        qgs.initQgis()
+
+        # shapefile
+        aroundtheblockPath = os.path.join(os.path.abspath("../../sampledata/"), "amsterdam-yymmdd.csv")
+        logger = test_MMImport.mockLogger()
+        messageBar = test_MMImport.MockMessageBar(logger)
+        messageBox = test_MMImport.MockMessageBox
+        layer = loadCSVLayer(
+            dateFormat='yyyy/mm/dd',
+            gpsPath=aroundtheblockPath,
+            logger=logger,
+            mainWindow=None,
+            messageBar=messageBar,
+            messageBox=messageBox
+        )
+        self.assertTrue(layer.isValid())
+
+        # reset the flag
+        messageBar.gotSuccess = False
+
+        dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        fields = test_MMImport.field_indices(layer)
+
+        # if camera data should be included
+        layer.startEditing()
+        layer.beginEditCommand("Camera Editing")
+        flyto = {'name': 'Test Tour', 'flyToMode': 'smooth', 'duration': 1}
+        for index, feature in enumerate(layer.getFeatures()):
+            # make a dictionary of all of the camera parameters
+            attributes = feature.attributes()
+            rng = 50 # meters? - has to be > than the camera altitude, e.g. ~ 41
+            heading = index * 30 # degrees
+            # followAngle
+            camera = {'longitude': attributes[fields['x']], 'longitude_off': None, 'latitude': attributes[fields['y']], 'latitude_off': None, 'altitude' : attributes[fields['altitude']], 'altitudemode': 'relativeToGround', 'gxaltitudemode': None, 'gxhoriz': None, 'heading': heading, 'roll': None, 'tilt': 48, 'range': rng, 'follow_angle': None, 'streetview': None, 'hoffset': None}
+            cameraAlpha = {'longitude': 'a', 'longitude_off': 'b', 'latitude': 'c', 'latitude_off': 'd', 'altitude': 'e', 'altitudemode': 'f', 'gxaltitudemode': 'g', 'gxhoriz': 'h', 'heading': 'i', 'roll': 'j', 'tilt': 'k', 'range': 'l', 'follow_angle': 'm', 'streetview': 'n', 'hoffset': 'o'}
+            cameratemp = {}
+            #convert to cameratemp
+            for key,value in camera.iteritems():
+                cameratemp[cameraAlpha[key]] = value
+            layer.changeAttributeValue(feature.id(), fields['camera'], str(cameratemp))
+            layer.changeAttributeValue(feature.id(), fields['flyto'], str(flyto))
+            layer.changeAttributeValue(feature.id(), fields['lookat'], '') # get rid of lookats
+        layer.endEditCommand()
+
+        loggerPath = ""
+        exportToFile(
+            activeLayer=layer,
+            audioHREF="",
+            audioOffset=0,
+            exportPath="amsterdam-yymmdd-camera-range.kml",
             fields=fields,
             lastDirectory=".",
             logger=logger,
