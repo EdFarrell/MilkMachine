@@ -6,11 +6,81 @@ import os
 
 from qgis.core import QgsApplication, QgsVectorLayer
 from MMImport import loadCSVLayer
-from MMExport import exportToFile
+from MMExport import exportToFile, makeCoordinateReferenceSystem, wgs84LatLonToUTMZone
 
 import test_MMImport
 
 class TestMMExport(unittest.TestCase):
+    def testWGS84LatLonToUTMZoneCambodia(self):
+        latitude = 13.41250188
+        longitude = 103.86666901
+        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
+        self.assertEqual(zone, 48)
+        self.assertEqual(band, 'P')
+
+    def testMakeCoordinateReferenceSystemCambodia(self):
+        latitude = 13.41250188
+        zone = 48
+        crs = makeCoordinateReferenceSystem(latitude, zone)
+        self.assertIsNotNone(crs)
+        self.assertTrue(crs.isValid())
+
+    def testWGS84LatLonToUTMZonePhiladelphia(self):
+        latitude = 39.95
+        longitude = -75.166667
+        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
+        self.assertEqual(zone, 18)
+        self.assertEqual(band, 'S')
+
+    def testMakeCoordinateReferenceSystemPhiladelphia(self):
+        latitude = 39.95
+        zone = 18
+        crs = makeCoordinateReferenceSystem(latitude, zone)
+        self.assertIsNotNone(crs)
+        self.assertTrue(crs.isValid())
+
+    def testWGS84LatLonToUTMZoneAmsterdam(self):
+        latitude = 52.366667
+        longitude = 4.9
+        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
+        self.assertEqual(zone, 31)
+        self.assertEqual(band, 'U')
+
+    def testMakeCoordinateReferenceSystemAmsterdam(self):
+        latitude = 52.366667
+        zone = 31
+        crs = makeCoordinateReferenceSystem(latitude, zone)
+        self.assertIsNotNone(crs)
+        self.assertTrue(crs.isValid())
+
+    def testWGS84LatLonToUTMZoneSydney(self):
+        latitude = -33.865
+        longitude = 151.209444
+        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
+        self.assertEqual(zone, 56)
+        self.assertEqual(band, 'H')
+
+    def testMakeCoordinateReferenceSystemSydney(self):
+        latitude = -33.865
+        zone = 56
+        crs = makeCoordinateReferenceSystem(latitude, zone)
+        self.assertIsNotNone(crs)
+        self.assertTrue(crs.isValid())
+
+    def testWGS84LatLonToUTMZoneRioDeJaneiro(self):
+        latitude = -22.908333
+        longitude = -43.196389
+        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
+        self.assertEqual(zone, 23)
+        self.assertEqual(band, 'K')
+
+    def testMakeCoordinateReferenceSystemRioDeJaneiro(self):
+        latitude = -22.908333
+        zone = 23
+        crs = makeCoordinateReferenceSystem(latitude, zone)
+        self.assertIsNotNone(crs)
+        self.assertTrue(crs.isValid())
+
     def testExportToFileWithCameraOffset(self):
         QgsApplication.setPrefixPath("/usr/share/qgis", True)
         qgs = QgsApplication([], False)

@@ -1,13 +1,79 @@
 import datetime
 import decimal
+import math
 import os
 import simplekml
 
 from qgis.core import QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsPoint, QgsVectorFileWriter
 from qgis.gui import QgsMessageBar
 
+def wgs84LatLonToUTMZone(latitude, longitude):
+    """
+    Finds the UTM zone which contains the given WGS84 point.
+
+    Args:
+        param1: The WGS84 latitude.
+        param2: The WGS84 longitude.
+
+    Returns:
+        A tuple of the UTM zone integer and the UTM latitude band character
+
+    >>> wgs84LatLonToUTMZone(13.41250188, 103.86666901)
+    (48.0, 'P')
+    """
+    # based on http://www.movable-type.co.uk/scripts/latlong-utm-mgrs.html
+    zone = math.floor((longitude + 180) / 6) + 1 # longitudinal zone
+
+    # handle Norway/Svalbard exceptions
+    # grid zones are 8 degrees tall; 0N is offset 10 into latitude bands array
+    mgrsLatBands = 'CDEFGHJKLMNPQRSTUVWXX' # X is repeated for 80-84N
+    latBand = mgrsLatBands[int(math.floor(latitude / 8 + 10))]
+    # adjust zone & central meridian for Norway
+    if zone == 31 and latBand == 'V' and longitude >= 3:
+        zone += 1
+    # adjust zone & central meridian for Svalbard
+    elif zone == 32 and latBand == 'X' and longitude < 9:
+        zone -= 1
+    elif zone == 32 and latBand == 'X' and longitude >= 9:
+        zone += 1
+    elif zone == 34 and latBand == 'X' and longitude < 21:
+        zone -= 1
+    elif zone == 34 and latBand == 'X' and longitude >= 21:
+        zone += 1
+    elif zone == 36 and latBand == 'X' and longitude < 33:
+        zone -= 1
+    elif zone ==36 and latBand == 'X' and longitude >=33:
+        zone += 1
+    else:
+        pass
+
+    return zone, latBand
+
+def makeCoordinateReferenceSystem(latitude, utmZone):
+    """
+    Creates a coordinate reference system, for instance for converting to this system.
+
+    Args:
+        param1: The WGS84 latitude.
+        param2: The UTM zone number.
+
+    Returns:
+        A valid QgsCoordinateReferenceSystem or None
+
+    >>> makeCoordinateReferenceSystem(13.41250188, 48) #doctest: +ELLIPSIS
+    <qgis._core.QgsCoordinateReferenceSystem object at 0x...>
+
+    >>> makeCoordinateReferenceSystem(13.41250188, 21442) is None
+    True
+    """
+    crs = QgsCoordinateReferenceSystem()
+    proj4String = "+proj=utm +ellps=WGS84 +datum=WGS84 +units=m +zone=%s" % utmZone
+    if latitude < 0:
+        proj4String += " +south"
+    result = crs.createFromProj4(proj4String)
+    return crs if result and crs.isValid() else None
+
 def exportToFile(activeLayer, audioHREF, audioOffset, exportPath, fields, lastDirectory, logger, loggerPath, messageBar):
-    utmzone = 26918 #UTM 18N
     cc = 0
     kml = simplekml.Kml()
     camStartTime = 0
@@ -284,13 +350,16 @@ def exportToFile(activeLayer, audioHREF, audioOffset, exportPath, fields, lastDi
 
                 if cameradict['longitude'] and cameradict['latitude']:
                     if cameradict['longitude_off'] or cameradict['latitude_off']: # If there is an offset
+                        longitude = float(cameradict['longitude'])
+                        latitude = float(cameradict['latitude'])
+                        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
 
                         crsSrc = QgsCoordinateReferenceSystem(4326)    # WGS 84
-                        crsDest = QgsCoordinateReferenceSystem(utmzone)  # WGS 84 / UTM zone
+                        crsDest = makeCoordinateReferenceSystem(latitude, zone)
                         xform = QgsCoordinateTransform(crsSrc, crsDest)
                         xform2 = QgsCoordinateTransform(crsDest, crsSrc)
 
-                        utmpt = xform.transform(QgsPoint(float(cameradict['longitude']),float(cameradict['latitude'])))
+                        utmpt = xform.transform(QgsPoint(longitude, latitude))
                         utmptlist = [utmpt[0], utmpt[1]]
                         # now add the utm point to the new feature
                         if cameradict['longitude_off']:
@@ -307,13 +376,16 @@ def exportToFile(activeLayer, audioHREF, audioOffset, exportPath, fields, lastDi
                         flyto.camera.latitude = offsetpt[1]
 
                     elif cameradict['range'] and cameradict['heading'] and cameradict['altitude']:
-                        import math
+                        longitude = float(cameradict['longitude'])
+                        latitude = float(cameradict['latitude'])
+                        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
+
                         crsSrc = QgsCoordinateReferenceSystem(4326)    # WGS 84
-                        crsDest = QgsCoordinateReferenceSystem(utmzone)  # WGS 84 / UTM zone
+                        crsDest = makeCoordinateReferenceSystem(latitude, zone)
                         xform = QgsCoordinateTransform(crsSrc, crsDest)
                         xform2 = QgsCoordinateTransform(crsDest, crsSrc)
 
-                        utmpt = xform.transform(QgsPoint(float(cameradict['longitude']),float(cameradict['latitude'])))
+                        utmpt = xform.transform(QgsPoint(longitude, latitude))
                         utmptlist = [utmpt[0], utmpt[1]]  # x,y utm
 
                         if cameradict['follow_angle']:
@@ -441,13 +513,16 @@ def exportToFile(activeLayer, audioHREF, audioOffset, exportPath, fields, lastDi
 
                 if cameradict['longitude'] and cameradict['latitude']:
                     if cameradict['longitude_off'] or cameradict['latitude_off']: # If there is an offset
+                        longitude = float(cameradict['longitude'])
+                        latitude = float(cameradict['latitude'])
+                        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
 
                         crsSrc = QgsCoordinateReferenceSystem(4326)    # WGS 84
-                        crsDest = QgsCoordinateReferenceSystem(utmzone)  # WGS 84 / UTM zone
+                        crsDest = makeCoordinateReferenceSystem(latitude, zone)
                         xform = QgsCoordinateTransform(crsSrc, crsDest)
                         xform2 = QgsCoordinateTransform(crsDest, crsSrc)
 
-                        utmpt = xform.transform(QgsPoint(float(cameradict['longitude']),float(cameradict['latitude'])))
+                        utmpt = xform.transform(QgsPoint(longitude, latitude))
                         utmptlist = [utmpt[0], utmpt[1]]
                         # now add the utm point to the new feature
                         if cameradict['longitude_off']:
@@ -461,13 +536,16 @@ def exportToFile(activeLayer, audioHREF, audioOffset, exportPath, fields, lastDi
                         flyto.camera.latitude = offsetpt[1]
 
                     elif cameradict['range'] and cameradict['heading'] and cameradict['altitude']:
-                        import math
+                        longitude = float(cameradict['longitude'])
+                        latitude = float(cameradict['latitude'])
+                        zone, band = wgs84LatLonToUTMZone(latitude, longitude)
+
                         crsSrc = QgsCoordinateReferenceSystem(4326)    # WGS 84
-                        crsDest = QgsCoordinateReferenceSystem(utmzone)  # WGS 84 / UTM zone
+                        crsDest = makeCoordinateReferenceSystem(latitude, zone)
                         xform = QgsCoordinateTransform(crsSrc, crsDest)
                         xform2 = QgsCoordinateTransform(crsDest, crsSrc)
 
-                        utmpt = xform.transform(QgsPoint(float(cameradict['longitude']),float(cameradict['latitude'])))
+                        utmpt = xform.transform(QgsPoint(longitude, latitude))
                         utmptlist = [utmpt[0], utmpt[1]]  # x,y utm
 
                         if cameradict['follow_angle']:
