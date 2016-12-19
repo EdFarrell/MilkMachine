@@ -39,6 +39,29 @@ All raw .csv GPS files need to have these 5 fields; "date", "time", "x", "y", "a
 - Python``` gpxpy, mutagen, simplekml``` packages are all distributed with MilkMachine to avoid user installation.
 - Python SciPy may need to be installed manually. See http://www.scipy.org/install.html for platform specific instructions. Windows OSGeo4W QGIS installer ships with SciPy by default.
 
+## Developing using Docker
+
+[Docker](https://www.docker.com) can be used to create an isolated development environment, especially on macOS where installing QGIS can be tricky. [Docker for Mac](https://docs.docker.com/docker-for-mac/) is recommended for macOS users.
+
+The Docker settings are specified in the `Dockerfile`.
+
+### Creating a Docker container
+
+From the root directory of this repository, you can create a container with all the necessary QGIS and Python dependencies:
+
+    docker build -t milkmachine .
+
+### Using a Docker container
+
+From your normal command line, after building the container, you can launch the container like so:
+
+    docker run -it -v ${PWD}:/milkmachine -w /milkmachine milkmachine bash
+
+This will give you a bash environment with all the relevant Python modules available where you can run commands, such as tests:
+
+    mmdev@4d82a4c3a694:/milkmachine$ cd src/MilkMachine/
+    mmdev@4d82a4c3a694:/milkmachine/src/MilkMachine$ python -m unittest discover
+
 ## Issues
 - QGIS 2.8 & 2.12-dev testing is ongoing
 - MilkMachine will be added to the QGIS Plugin Repository soon
