@@ -123,7 +123,7 @@ coming soon
 - Rotation angles for Google Earth models.
 
 # Authors, Contributors, Support
-- The code was developed by Ed Farrell (@EdFarrell) & Sean McGinnis (@SeanKMcGinnis), and is maintained by Ed. 
+- Code Authors: Ed Farrell (@EdFarrell), Sean McGinnis (@SeanKMcGinnis), and Peter Robinett (@pr1001).
 - MilkMachine was developed to support the 250 Miles Crossing Philadelphia Project (http://www.250miles.net/), featuring digital artists Esther Polak and Ivar van Bekkum (http://www.polakvanbekkum.com/).
 - Support for the project came from these sources:
   * University City Science Center
